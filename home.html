@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILTROH2AC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0077b6;
+            --aqua: #00b4d8;
+            --light-aqua: #90e0ef;
+            --dark-blue: #023e8a;
+            --pale-blue: #caf0f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+        }
+
+        /* Buttons */
+        .btn-aqua {
+            background-color: var(--aqua);
+            color: white;
+            border: none;
+        }
+
+        .btn-aqua:hover {
+            background-color: var(--light-aqua);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--pale-blue) 0%, white 100%);
+            padding: 100px 0;
+        }
+
+        /* Product Cards */
+        .product-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-title {
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .product-price {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--aqua);
+            text-decoration: underline;
+        }
+
+        /* Admin Section */
+        .admin-section {
+            background-color: var(--pale-blue);
+            padding: 40px 0;
+        }
+
+        /* Form Validation */
+        .was-validated .form-control:valid {
+            border-color: #198754;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+            padding-right: calc(1.5em + 0.75rem);
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+
+        .was-validated .form-control:invalid {
+            border-color: #dc3545;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+            padding-right: calc(1.5em + 0.75rem);
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 60px 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">AquaBlue</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-sign-in-alt me-1"></i> Login
+                    </a>
+                    <a href="#" class="btn btn-aqua" data-bs-toggle="modal" data-bs-target="#signupModal">
+                        <i class="fas fa-user-plus me-1"></i> Sign Up
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Welcome to AquaBlue</h1>
+                    <p class="lead mb-4">Discover our premium collection of products with a touch of blue and aqua elegance</p>
+                    <a href="#products" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-shopping-bag me-2"></i> Shop Now
+                    </a>
+                    <a href="#" class="btn btn-aqua btn-lg">
+                        <i class="fas fa-info-circle me-2"></i> Learn More
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://via.placeholder.com/600x400/00b4d8/ffffff?text=AquaBlue+Products" alt="Hero Image" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" style="color: var(--dark-blue);">Our Products</h2>
+            <div class="row" id="productContainer">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Section (Hidden by default) -->
+    <section class="admin-section py-5 d-none" id="adminSection">
+        <div class="container">
+            <h2 class="text-center mb-4">Admin Dashboard</h2>
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4>Product Management</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <button class="btn btn-aqua me-2" id="createBtn">
+                                <i class="fas fa-plus me-1"></i> Add Product
+                            </button>
+                            <button class="btn btn-info me-2" id="refreshBtn">
+                                <i class="fas fa-sync-alt me-1"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminTable">
+                                <!-- Admin data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>AquaBlue</h5>
+                    <p>Providing elegant products with a blue and aqua touch since 2023.</p>
+                    <div class="social-icons">
+                        <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Home</a></li>
+                        <li class="mb-2"><a href="#">Products</a></li>
+                        <li class="mb-2"><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Contact Us</h5>
+                    <address>
+                        <i class="fas fa-map-marker-alt me-2"></i> 123 Ocean Ave, Suite 456<br>
+                        <i class="fas fa-phone me-2"></i> (123) 456-7890<br>
+                        <i class="fas fa-envelope me-2"></i> info@aquablue.example
+                    </address>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3" style="border-color: rgba(255,255,255,0.1);">
+            <div class="text-center">
+                <p>&copy; 2023 AquaBlue. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modals -->
+    <!-- Include the auth modals from previous example here -->
+    <!-- ... -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sample product data
+            const products = [
+                {
+                    id: 1,
+                    name: "Aqua Blue Bottle",
+                    price: 24.99,
+                    description: "Premium water bottle with aqua blue design",
+                    image: "https://via.placeholder.com/300x300/00b4d8/ffffff?text=Aqua+Bottle"
+                },
+                {
+                    id: 2,
+                    name: "Ocean Blue Shirt",
+                    price: 29.99,
+                    description: "Comfortable shirt with ocean blue pattern",
+                    image: "https://via.placeholder.com/300x300/0077b6/ffffff?text=Ocean+Shirt"
+                },
+                {
+                    id: 3,
+                    name: "Deep Blue Mug",
+                    price: 14.99,
+                    description: "Ceramic mug with deep blue color",
+                    image: "https://via.placeholder.com/300x300/023e8a/ffffff?text=Deep+Mug"
+                },
+                {
+                    id: 4,
+                    name: "Sky Blue Notebook",
+                    price: 12.99,
+                    description: "Eco-friendly notebook with sky blue cover",
+                    image: "https://via.placeholder.com/300x300/90e0ef/333333?text=Sky+Notebook"
+                },
+                {
+                    id: 5,
+                    name: "Turquoise Bracelet",
+                    price: 19.99,
+                    description: "Handmade turquoise stone bracelet",
+                    image: "https://via.placeholder.com/300x300/48cae4/ffffff?text=Turquoise+Bracelet"
+                },
+                {
+                    id: 6,
+                    name: "Teal Blue Scarf",
+                    price: 22.99,
+                    description: "Warm winter scarf in teal blue",
+                    image: "https://via.placeholder.com/300x300/0096c7/ffffff?text=Teal+Scarf"
+                }
+            ];
+
+            // Display products
+            const productContainer = document.getElementById('productContainer');
+            
+            function renderProducts() {
+                productContainer.innerHTML = '';
+                products.forEach(product => {
+                    const productHTML = `
+                        <div class="col-md-4">
+                            <div class="card product-card h-100">
+                                <img src="${product.image}" class="card-img-top product-img" alt="${product.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title product-title">${product.name}</h5>
+                                    <p class="card-text">${product.description}</p>
+                                </div>
+                                <div class="card-footer bg-transparent">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="product-price">$${product.price.toFixed(2)}</span>
+                                        <button class="btn btn-sm btn-aqua add-to-cart" data-id="${product.id}">
+                                            <i class="fas fa-cart-plus me-1"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productContainer.innerHTML += productHTML;
+                });
+            }
+
+            // Render admin table
+            function renderAdminTable() {
+                const adminTable = document.getElementById('adminTable');
+                adminTable.innerHTML = '';
+                
+                products.forEach(product => {
+                    const row = `
+                        <tr>
+                            <td>${product.id}</td>
+                            <td><img src="${product.image}" width="50" height="50" class="rounded" alt="${product.name}"></td>
+                            <td>${product.name}</td>
+                            <td>$${product.price.toFixed(2)}</td>
+                            <td>
+                                <button class="btn btn-sm btn-warning edit-product" data-id="${product.id}">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger delete-product" data-id="${product.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    adminTable.innerHTML += row;
+                });
+            }
+
+            // Initial render
+            renderProducts();
+
+            // Admin functionality
+            let currentUser = null;
+            
+            // Simulate admin login (in real app, use proper authentication)
+            function loginAsAdmin() {
+                currentUser = { role: 'admin' };
+                document.getElementById('adminSection').classList.remove('d-none');
+                renderAdminTable();
+            }
+            
+            // Add event listeners for admin buttons
+            document.getElementById('createBtn')?.addEventListener('click', function() {
+                // In a real app, show a form to create a new product
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                const newProduct = {
+                    id: newId,
+                    name: `New Product ${newId}`,
+                    price: 9.99,
+                    description: "New product description",
+                    image: "https://via.placeholder.com/300x300/caf0f8/333333?text=New+Product"
+                };
+                
+                products.push(newProduct);
+                renderProducts();
+                renderAdminTable();
+                alert(`Product ${newId} created!`);
+            });
+            
+            document.getElementById('refreshBtn')?.addEventListener('click', function() {
+                renderAdminTable();
+                alert('Product list refreshed!');
+            });
+            
+            // Add to cart functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    alert(`Added ${product.name} to cart!`);
+                }
+                
+                // Edit product
+                if (e.target.classList.contains('edit-product')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    const product = products.find(p => p.id === productId);
+                    const newName = prompt('Enter new product name:', product.name);
+                    if (newName) {
+                        product.name = newName;
+                        renderProducts();
+                        renderAdminTable();
+                        alert('Product updated!');
+                    }
+                }
+                
+                // Delete product
+                if (e.target.classList.contains('delete-product')) {
+                    const productId = parseInt(e.target.getAttribute('data-id'));
+                    if (confirm('Are you sure you want to delete this product?')) {
+                        const index = products.findIndex(p => p.id === productId);
+                        if (index !== -1) {
+                            products.splice(index, 1);
+                            renderProducts();
+                            renderAdminTable();
+                            alert('Product deleted!');
+                        }
+                    }
+                }
+            });
+
+            // For demo purposes - login as admin
+            // loginAsAdmin();
+        });
+    </script>
+</body>
+</html>
